@@ -1,0 +1,60 @@
+for navigation
+- open build.gradle (Module)
+    -insert in plugin
+        id 'kotlin-kapt'
+        id 'androidx.navigation.safeargs.kotlin'
+    - insert in dependencies
+        implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+        implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
+
+
+-open build.gradle (project)
+    -insert above plugins
+        ******
+        buildscript {
+            repositories {
+                google()
+                mavenCentral()
+            }
+            dependencies {
+                classpath("android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0")
+            }
+        }
+        ******
+
+
+- build fragment
+
+- add layout in fragment
+
+- build navigation xml file in res folder 
+
+-open that file and link first fragemnt to second Fragment and get id in attributes 
+
+- open activity main file 
+	
+	-add fragment container and set id 
+	
+	-add 
+		
+        android:name = "androidx.navigation.fragment.NavHostFragment"
+	
+	  app:defaultNavHost = "true"
+        
+	  app:navGraph = "@navigation/navigation"
+
+- in  first Fragment
+	-in onCreayteView
+		view = inflater.infalte(R.layout.fragemnt_first,contaier,flase)
+		val nextButton : Button = view.findViewById(R.id.btnNext)
+
+		nextButton.setOnClickListener{
+		
+		val cation = FirstFragmentDirections.actionFirstFragmentToSercondFragment()
+					
+		findNavController().navigate(action)		
+		}
+
+		return view 
+		

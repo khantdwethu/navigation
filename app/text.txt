@@ -1,0 +1,27 @@
+for navigation
+- open build.gradle (Module)
+    -insert in plugin
+        id 'kotlin-kapt'
+        id 'androidx.navigation.safeargs.kotlin'
+    - insert in dependencies
+        implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+        implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
+
+
+-open build.gradle (project)
+    -insert above plugins
+        ******
+        buildscript {
+            repositories {
+                google()
+                mavenCentral()
+            }
+            dependencies {
+                classpath("android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0")
+            }
+        }
+        ******
+
+
+- build fragment
