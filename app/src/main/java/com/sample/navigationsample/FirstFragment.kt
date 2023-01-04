@@ -1,5 +1,6 @@
 package com.sample.navigationsample
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.sample.navigationsample.api.NewSApiClient
 import com.sample.navigationsample.data.News
+import com.sample.navigationsample.viewmodel.NewsViewModel
 import retrofit2.Call
 import retrofit2.Response
 
@@ -24,6 +27,7 @@ class FirstFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("LongLogTag")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,76 +40,32 @@ class FirstFragment : Fragment() {
             findNavController().navigate(action);
         }
 
-        var titleText = view.findViewById<TextView>(R.id.title);
-        var descText: TextView = view.findViewById(R.id.desc);
+//        this is for view model
+        var newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
-//        var news = loadNews()
+        newsViewModel.loadNews()
 
-        val newsApiClient = NewSApiClient();
+//        var news = newsViewModel.getNews().value
 
-        val apiCall = newsApiClient.getNewsWithQuery()
+        var titleText = view.findViewById<TextView>(R.id.title)
+        var descText: TextView = view.findViewById(R.id.desc)
 
-        apiCall.enqueue(object : retrofit2.Callback<News> {
+//        newsViewModel.getNews().observe(viewLifecycleOwner, { news ->
+//            Log.d("ResponseViewModel->>>>>>>>>",news.articles.toString())
+////            titleText.text = news?.articles?.get(0)?.title ?: "Empty"
+////            descText.text = news?.articles?.get(0)?.description ?: "Empty"
+//
+//        })
 
-            override fun onResponse(call: Call<News>, response: Response<News>) {
-                titleText.text = response.body()!!.articles?.get(0)?.title ?: "Empty Title"
-
-                descText.text = response.body()!!.articles?.get(0)?.description ?: "Empty Title"
-//                Log.d("Response:>>>>>>",response.body().toString());
-                if (response.isSuccessful()) {
-                    Log.d("Resspnesss======>>>>", Gson().toJson(response.body()))
-                    Log.d("-------->>>>>>>>>", "suc")
-                } else {
-                    Log.d("-----------<<<<<<<<<<<", "Fail")
-
-                }
-
-            }
+        newsViewModel.getNews().observe(viewLifecycleOwner,{news->Log.d("ResponseViewModel->>>>>>>>>>",news.articles.toString())})
 
 
-            override fun onFailure(call: Call<News>, t: Throwable) {
-                Log.e("Response:>>>>>>", t.toString());
-            }
 
-        })
-
-//        titleText.text = news.articles?.get(0)?.title ?: "Empty";
-//        descText.text = news.articles?.get(0)?.description ?: "Empty";
+//
+//        titleText.text = news?.articles?.get(0)?.title ?: "Empty"
+//        descText.text = news?.articles?.get(0)?.description ?: "Empty"
         // Inflate the layout for this fragment
         return view
-    }
-
-
-    //    this is for api  call
-    fun loadNews(): News {
-        var news = News();
-        val newsApiClient = NewSApiClient();
-
-        val apiCall = newsApiClient.getNewsWithQuery()
-
-        apiCall.enqueue(object : retrofit2.Callback<News> {
-
-            override fun onResponse(call: Call<News>, response: Response<News>) {
-                news = response.body()!!
-//                Log.d("Response:>>>>>>",response.body().toString());
-                if (response.isSuccessful()) {
-                    Log.d("Resspnesss======>>>>", Gson().toJson(response.body()))
-                    Log.d("-------->>>>>>>>>", "suc")
-                } else {
-                    Log.d("-----------<<<<<<<<<<<", "Fail")
-
-                }
-
-            }
-
-
-            override fun onFailure(call: Call<News>, t: Throwable) {
-                Log.e("Response:>>>>>>", t.toString());
-            }
-
-        })
-
-        return news;
     }
 
 
