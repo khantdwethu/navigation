@@ -11,6 +11,9 @@ android {
     namespace 'com.sample.navigationsample'
     compileSdk 32
 
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.sample.navigationsample"
         minSdk 21

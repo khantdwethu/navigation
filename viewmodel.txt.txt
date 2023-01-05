@@ -1,0 +1,29 @@
+for view Model 
+	- open build gradle and paste this link
+		implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+
+	- create new package folder and create class file
+		-see in project file name is NewsViewModel.kt
+		and check first fargement.kt change something and remove some line
+
+
+
+
+
+	data path 
+		main activity 
+			||
+		      \/
+		navigation Fragment
+			||
+		      \/
+		fist 		second   <--- view Model 
+							
+
+
+		/\
+		||
+		||
+		||
+
+	   view model

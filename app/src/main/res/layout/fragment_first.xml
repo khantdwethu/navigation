@@ -17,28 +17,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".FirstFragment">
 
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:text="Next Fragment"
-        tools:ignore="MissingConstraints" />
+<!--    <Button-->
+<!--        android:id="@+id/btnNext"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="240dp"-->
+<!--        android:text="Next Fragment"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="title"
-        app:layout_constraintTop_toBottomOf="@+id/btnNext"/>
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="title"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btnNext"/>-->
 
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="match_parent"
+<!--    <TextView-->
+<!--        android:id="@+id/desc"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="description"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/title" />-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="description"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        tools:ignore="MissingConstraints"
+        tools:listitem="@layout/single_item"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
