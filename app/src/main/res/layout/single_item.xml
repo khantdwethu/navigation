@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp">
-
+    android:layout_margin="5dp"
+    app:cardCornerRadius="8dp"
+    android:backgroundTint="#FAFAF9"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,15 +24,28 @@
             android:layout_marginBottom="10dp"
             android:textColor="#0ABBDA"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:id="@+id/newImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title1"
+            />
 
         <TextView
             android:id="@+id/desc1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="description"
-            app:layout_constraintTop_toBottomOf="@id/title1"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/newImg"
+            tools:ignore="MissingConstraints"
+            android:textColor="#1C1B1B"
+            android:textAlignment="gravity"
+            android:padding="10dp"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

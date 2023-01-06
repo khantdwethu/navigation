@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.navigationsample.data.ArticlesItem
 import com.sample.navigationsample.databinding.SingleItemBinding
+import com.squareup.picasso.Picasso
 
 
 class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -23,7 +24,13 @@ class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
      holder.binding.title1.text= articleList.get(position).title
       holder.binding.desc1.text = articleList.get(position).description
+//       holder.binding.newImg.setImageResource()
+        Picasso.get().load(articleList.get(position).urlToImage).into(holder.binding.newImg)
+
+
+
       }
+
 
    override fun getItemCount(): Int = articleList.size
 
